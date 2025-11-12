@@ -63,6 +63,19 @@ git remote add origin https://github.com/<YOUR_USERNAME>/dolharubang.git
 git push -u origin main
 ```
 
+### 이미 너무 많은 파일이 잡혔다고 느낄 때
+실제 추적 파일 수 확인:
+```powershell
+git ls-files | Measure-Object -Line
+```
+Ren'Py 컴파일 산출물(*.rpyc 등)이 실수로 커밋되었다면 .gitignore 추가 후 제거:
+```powershell
+git rm --cached -r game/cache
+git rm --cached *.rpyc *.rpymc *.rpyb
+git commit -m "Remove compiled Ren'Py artifacts"
+```
+현재 레포는 약간의 소스 + 에셋만 추적 중(100개 안팎)이며 10k 이상이 아님. OneDrive 동기화 팝업이나 에디터 탐색기가 전체 동기화 파일 수를 보여 혼동될 수 있습니다.
+
 ## 라이선스
 추후 결정 (예: MIT, CC-BY-NC 등). 현재는 미정.
 
