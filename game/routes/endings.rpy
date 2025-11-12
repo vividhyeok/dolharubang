@@ -1,4 +1,3 @@
-# 범위 엔딩 (숫자는 예시)
 label ending_check:
     if gst.aff >= 90:
         jump ending_true

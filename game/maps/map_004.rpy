@@ -7,23 +7,22 @@ label map_004:
     d "여긴 박수 소리가 먼저 달린다."
     menu:
         "그래도 입장 (₩3000)":
-            if can_pay(3000):
-                $ pay(3000)
-                $ add_aff(-2)
+            if gst.can_pay(3000):
+                $ gst.pay(3000)
+                $ gst.add_aff(-2)
                 n "울타리 안의 질주는 시끄러웠다. 우리 사이는 조용했다."
             else:
                 n "티켓 창구가 멀었다. 마음도 멀었다."
         "그냥 돌아서 다른 길 찾기 (₩0)":
-            $ add_aff(+2)
+            $ gst.add_aff(+2)
             n "돌하르방의 그림자가 길어졌다. 길어진 만큼 가까워졌다."
         "혼자 들어갔다 오기 (₩3000)":
-            if can_pay(3000):
-                $ pay(3000)
-                $ add_aff(-5)
+            if gst.can_pay(3000):
+                $ gst.pay(3000)
+                $ gst.add_aff(-5)
                 n "관중석에서 누군가가 고개를 돌렸다. 석상 같은 눈빛이었다."
             else:
                 n "혼자 들어갈 돈도, 말도 없었다."
     n "나오니 바람이 달려와 멈췄다. 그게 오늘의 결승선 같았다."
     $ mark_map_finished("004")
-    $ gst.day += 1
     jump day_loop

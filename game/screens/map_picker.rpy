@@ -1,6 +1,6 @@
-screen map_picker(options):
 default persistent.maps_seen = set()
 
+screen map_picker(options):
     tag menu
     modal True
     frame:

@@ -17,6 +17,7 @@ init -1 python:
 
     def mark_map_finished(id):
         persistent.maps_seen.add(id)
+        gst.day += 1
 
     def get_next_unseen_map_id():
         unseen = [i for i in MAPS.keys() if i not in persistent.maps_seen]

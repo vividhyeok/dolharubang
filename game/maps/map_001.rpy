@@ -4,7 +4,5 @@ init python:
 
 label map_001:
     n "[MAPS['001']['desc']]"
-    n "여기에 001 장면 내용을 씁니다."
     $ mark_map_finished("001")
-    $ gst.day += 1
     jump day_loop

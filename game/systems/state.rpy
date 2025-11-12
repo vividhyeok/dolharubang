@@ -8,20 +8,29 @@ init -1 python:
             self.known_prefs = {}
             self.route_flags = {}
 
-    def add_money(v):
-        gst.money = max(0, gst.money + v)
+        def add_money(self, v):
+            self.money = max(0, self.money + v)
 
-    def add_aff(v):
-        gst.aff = max(0, min(100, gst.aff + v))
+        def add_aff(self, v):
+            self.aff = max(0, min(100, self.aff + v))
+
+        def can_pay(self, cost):
+            return self.money >= cost
+
+        def pay(self, cost):
+            if self.can_pay(cost):
+                self.money -= cost
+                return True
+            return False
+
+        def set_pref(self, key, value):
+            self.known_prefs[key] = value
+
+        def knows_pref(self, key, val):
+            return self.known_prefs.get(key) == val
 
     def unlock_scene(sid):
         persistent.codex.add(sid)
-
-    def set_pref(key, value):
-        gst.known_prefs[key] = value
-
-    def knows_pref(key, val):
-        return gst.known_prefs.get(key) == val
 
 default gst = GST()
 default persistent.codex = set()
