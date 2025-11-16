@@ -15,7 +15,7 @@ screen map_picker(options):
             else:
                 for m in options:
                     $ is_new = (m['id'] not in persistent.maps_seen)
-                    $ txt = "[m['id']]  " + (m["desc"] or m["label"]) + (" (NEW)" if is_new else "")
+                    $ txt = "[m['id']]  " + (m["desc"] or m["label"]) # + (" (NEW)" if is_new else "")
                     textbutton txt action Return(m)
                 null height 12
                 textbutton "오늘은 패스" action Return("SKIP")

@@ -7,6 +7,7 @@ init -1 python:
             self.aff = 0
             self.known_prefs = {}
             self.route_flags = {}
+            self.last_map_id = None
 
         def add_money(self, v):
             self.money = max(0, self.money + v)
