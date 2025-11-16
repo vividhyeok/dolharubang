@@ -11,10 +11,12 @@ label map_005:
             $ gst.add_aff(0)
             n "하트는 금세 마르고 오그라들었다. 모양만 남았다."
             d "모양이라도 남는 게 어디냐."
+            $ set_next_map_from_choice("005", 0)
         "껍질을 돌하르방 코에 살짝 올려 ‘코감귤’ 만들기 (₩0)":
             $ gst.add_aff(+3)
             n "순간, 아무도 웃지 않았는데 웃긴 기분이 들었다. 그게 우리만 알던 농담이었다."
             d "내 코에 귤을 걸 수 있는 건 너뿐이야."
+            $ set_next_map_from_choice("005", 1)
     n "돌하르방은 말이 없었지만, 귤나무는 잔소리가 많았다."
     $ mark_map_finished("005")
     jump day_loop

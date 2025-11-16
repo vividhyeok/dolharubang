@@ -36,7 +36,7 @@ label horse_bet_quick:
             jump .bet_processing
 
         "뒤로":
-            jump day_loop
+            return False
 
 label .bet_processing:
     $ gst.pay(_bet_amount)
@@ -46,8 +46,8 @@ label .bet_processing:
 label .bet_result:
     $ gst.add_money(delta)
     python:
-        formatted_delta = "{:+,d}".format(delta)
+        net_delta = delta - _bet_amount
+        formatted_delta = "{:+,d}".format(net_delta)
     n "[result] [formatted_delta]원"
     $ unlock_scene(_scene_id)
-    $ gst.day += 1
-    jump day_loop
+    return True

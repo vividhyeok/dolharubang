@@ -12,10 +12,12 @@ label map_002:
             $ gst.add_aff(-2)
             n "사진엔 너만 나왔다. 화면 밖에서 무언가가 씩 웃었다."
             d "빛은 나를 지우지 못해. 대신 널 태우지."
+            $ set_next_map_from_choice("002", 0)
         "손만 살짝 잡고 파도선 따라 걷기 (₩0)":
             $ gst.add_aff(+2)
             n "모래에 남은 자국이 파도에 지워졌다. 또 남겼다. 또 지워졌다."
             d "사라지는 건 기록이 아니라 떨림이야."
+            $ set_next_map_from_choice("002", 1)
     n "돌하르방은 끝내 웃지 않았는데, 이상하게 데이트 같았다."
     $ mark_map_finished("002")
     jump day_loop

@@ -1,4 +1,6 @@
 init -1 python:
+    import random
+
     # 숫자 id -> 메타 정보
     MAPS = {}
 
@@ -22,10 +24,20 @@ init -1 python:
         gst.last_map_id = id
         gst.day += 1
 
-    def get_next_map_choices():
-        """현재까지 진행 상황을 바탕으로 다음에 선택할 수 있는 맵 목록을 반환."""
-        if gst.last_map_id is None:
-            return [MAPS["001"]] if "001" in MAPS else []
+    def set_next_map_from_choice(current_id, branch_index):
+        """현재 맵에서 고른 선택지(branch_index)가 향할 다음 맵을 예약."""
+        children = MAP_TREE.get(current_id)
+        if not children or branch_index >= len(children):
+            gst.next_map_id = None
+            return
+        gst.next_map_id = children[branch_index]
 
-        children = MAP_TREE.get(gst.last_map_id, tuple())
-        return [MAPS[c] for c in children if c in MAPS]
+    def randomize_next_branch():
+        """데이트를 건너뛸 때 다음 분기 중 하나를 무작위로 선택."""
+        if gst.next_map_id is None:
+            return
+        children = MAP_TREE.get(gst.next_map_id)
+        if not children:
+            gst.next_map_id = None
+            return
+        gst.next_map_id = random.choice(children)

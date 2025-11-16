@@ -14,6 +14,7 @@ label map_006:
                 d "일출은 빛의 파도야. 오늘은 우리가 먼저 기다렸네."
             else:
                 n "주머니 사정이 우리보다 먼저 해가 졌다."
+            $ set_next_map_from_choice("006", 0)
         "근처 카페에서 해돋이를 중계로 본다 (₩3000)":
             if gst.can_pay(3000):
                 $ gst.pay(3000)
@@ -22,6 +23,7 @@ label map_006:
                 d "가짜 빛도 결국 빛이네."
             else:
                 n "핸드폰 밝기만 올리고 서로의 얼굴을 비추었다."
+            $ set_next_map_from_choice("006", 1)
     n "해가 떠오르자 돌하르방의 표면이 주황빛으로 달궈졌다."
     $ mark_map_finished("006")
     jump day_loop

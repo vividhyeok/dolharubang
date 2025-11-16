@@ -19,7 +19,7 @@ def horse_bet(bet_amount, tier):
 
     r = random.random()
     if r < tier_cfg["win"]:
-        return "win", int(bet_amount * (tier_cfg["mul"] - 1))
+        return "win", int(bet_amount * tier_cfg["mul"])
     elif r < tier_cfg["win"] + tier_cfg["draw"]:
-        return "draw", 0
-    return "lose", -bet_amount
+        return "draw", bet_amount
+    return "lose", 0

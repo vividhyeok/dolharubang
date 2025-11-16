@@ -15,10 +15,12 @@ label map_004:
                 d "난 출발선이 어울리지 않아."
             else:
                 n "티켓 창구가 멀었다. 마음도 멀었다."
+            $ set_next_map_from_choice("004", 0)
         "그냥 돌아서 다른 길 찾기 (₩0)":
             $ gst.add_aff(+2)
             n "돌하르방의 그림자가 길어졌다. 길어진 만큼 가까워졌다."
             d "느린 길이 우리 답이겠지."
+            $ set_next_map_from_choice("004", 1)
     n "나오니 바람이 달려와 멈췄다. 그게 오늘의 결승선 같았다."
     $ mark_map_finished("004")
     jump day_loop

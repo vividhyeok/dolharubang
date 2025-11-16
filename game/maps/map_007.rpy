@@ -15,6 +15,7 @@ label map_007:
                 d "국물은 뜨겁고 마음은 조용하네."
             else:
                 n "주머니가 텅 비어 국물 대신 공기만 들이켰다."
+            $ set_next_map_from_choice("007", 0)
         "돌하르방에게 네온팔찌 걸어주기 (₩1000)":
             if gst.can_pay(1000):
                 $ gst.pay(1000)
@@ -23,6 +24,7 @@ label map_007:
                 d "빛나는 팔이라니, 잠깐은 움직일 수 있을 것 같아."
             else:
                 n "팔찌 하나 못 사주고 마음만 걸어놓았다."
+            $ set_next_map_from_choice("007", 1)
     n "시장 끝에서 바람이 골목으로 스며들었다. 오늘 밤은 잠들기 어렵겠다."
     $ mark_map_finished("007")
     jump day_loop

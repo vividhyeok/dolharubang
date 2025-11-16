@@ -35,26 +35,22 @@ label day_loop:
     if gst.day > 7:
         jump ending_check
 
-    $ options = get_next_map_choices()
+    menu:
+        "데이트를 한다":
+            if gst.next_map_id is None:
+                n "더 이상 진행할 데이트가 없습니다."
+                jump day_loop
+            $ renpy.jump(MAPS[gst.next_map_id]["label"])
 
-    if not options:
-        n "더 이상 진행할 맵이 없습니다. 이야기를 정리해 보자."
-        jump ending_check
+        "아르바이트를 한다 (돈 +, 오늘 스킵)":
+            call alba_scene
+            $ randomize_next_branch()
+            $ gst.day += 1
+            jump day_loop
 
-    if gst.last_map_id is None and options:
-        n "Day [gst.day]. 첫 만남을 시작한다."
-        $ renpy.jump(options[0]["label"])
-
-    n "Day [gst.day]. 어디로 갈까?"
-    $ choice_entries = []
-    python:
-        for opt in options:
-            text = f"[{opt['id']}] {opt['desc']}"
-            choice_entries.append((text, opt["label"]))
-        selected = renpy.display_menu(choice_entries)
-
-    if selected is None:
-        n "오늘은 방향을 정하지 못했다."
-        jump day_loop
-
-    $ renpy.jump(selected)
+        "경마공원에서 베팅한다 (결과만 보고 다음 날)":
+            call horse_bet_quick
+            if _return:
+                $ randomize_next_branch()
+                $ gst.day += 1
+            jump day_loop
